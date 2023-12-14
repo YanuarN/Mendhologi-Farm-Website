@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,8 +17,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'username',
+        'nama_admin',
         'password',
     ];
 
@@ -43,7 +42,15 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function melakukan(){
-        return $this->hasOne(Pesanan::class);
+    public function mencatat_pengeluaran(){
+        return $this->hasOne(Pengeluaran::class);
+    }
+
+    public function mencatat_pendapatan(){
+        return $this->hasOne(Pendapatan::class);
+    }
+
+    public function mengelola(){
+        return $this->hasOne(Hewan::class);
     }
 }
