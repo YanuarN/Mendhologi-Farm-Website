@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama_pengguna');
             $table->string('password');
             $table->string('alamat');
-            $table->integer('whatsapp');
+            $table->bigInteger('whatsapp');
             $table->rememberToken();
             $table->timestamps();
         });

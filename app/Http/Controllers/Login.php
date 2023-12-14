@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
-class Auth extends Controller
+class Login extends Controller
 {
     public function index(){
         return view('login.login_user');
     }
 
-    public function login(Request $request){
+    public function authtenticate(Request $request){
         $credentials = $request->validate([
             'username' => ['required'],
             'password' => ['required'],

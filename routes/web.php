@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth;
+use App\Http\Controllers\Login;
+use App\Http\Controllers\Register;
+use App\Http\Controllers\Regsiter;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
-Route::get('/domba', function () {
-    return view('domba');
-});
-Route::get('/login', [Auth::class,'index']);
-Route::post('/login',[Auth::class,'login']);
+
+Route::get('/register', [Register::class, 'index']);
+Route::post('/register', [Register::class, 'Create']);
+
+Route::get('/login', [Login::class,'index']);
+Route::post('/login',[Login::class,'authtenticate']);
