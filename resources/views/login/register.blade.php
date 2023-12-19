@@ -32,7 +32,7 @@
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" id="password" name="password" required>
+            <input type="password" placeholder="Enter your password" id="password" name="password" required>
           </div>
         </div>
         <div class="button">

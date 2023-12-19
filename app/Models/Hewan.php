@@ -9,6 +9,15 @@ class Hewan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'foto',
+        'jenis',
+        'berat',
+        'harga',
+    ];
+
+    
+
     public function kategoris(){
         return $this->hasOne(Kategori::class);
     }

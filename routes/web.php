@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Login;
 use App\Http\Controllers\Register;
 use App\Http\Controllers\Regsiter;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,5 +24,9 @@ Route::get('/', function () {
 Route::get('/register', [Register::class, 'index']);
 Route::post('/register', [Register::class, 'Create']);
 
-Route::get('/login', [Login::class,'index']);
-Route::post('/login',[Login::class,'authtenticate']);
+Route::controller(Login::class)-> group(function(){
+    Route::get('/login','index')->middleware('guest')->name('login');
+    Route::post('/login','authtenticate');
+});
+
+Route::get('/user', [UserController::class, 'index'])->name('users.index');
