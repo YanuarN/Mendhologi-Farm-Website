@@ -46,15 +46,18 @@ class Admin extends Authenticatable
     protected $primaryKey = 'idAdmin';
 
 
-    public function mencatat_pengeluaran(){
+    public function mencatat_pengeluaran()
+    {
         return $this->hasOne(Pengeluaran::class);
     }
 
-    public function mencatat_pendapatan(){
+    public function mencatat_pendapatan()
+    {
         return $this->hasOne(Pendapatan::class);
     }
 
-    public function mengelola(){
+    public function mengelola()
+    {
         return $this->hasOne(Hewan::class);
     }
 }

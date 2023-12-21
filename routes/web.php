@@ -25,13 +25,13 @@ Route::get('/', function () {
 Route::get('/register', [Register::class, 'index']);
 Route::post('/register', [Register::class, 'Create']);
 
-Route::controller(Login::class)-> group(function(){
-    Route::get('/login','index')->middleware('guest')->name('login');
-    Route::post('/login','authtenticate');
-    Route::post('/logout','Logout');
+Route::controller(Login::class)->group(function () {
+    Route::get('/login', 'index')->middleware('customGuest')->name('login');
+    Route::post('/login', 'authtenticate');
+    Route::post('/logout', 'Logout');
 });
 
-Route::get('/admin', [AdminLogin::class,'index'])->middleware('auth:admin');
+Route::get('/admin', [AdminLogin::class, 'index'])->middleware('auth:admin');
 
 Route::get('/user', [UserController::class, 'index'])->name('users.index');
 Route::resource('kategori', KategoriController::class);
