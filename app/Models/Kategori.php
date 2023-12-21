@@ -9,6 +9,10 @@ class Kategori extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'nama_kategori',
+    ];
+
     public function hewans(){
         return $this->belongsToMany(Hewan::class);
     }

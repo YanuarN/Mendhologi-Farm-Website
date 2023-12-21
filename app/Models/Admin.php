@@ -42,6 +42,10 @@ class Admin extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $guard = 'admin';
+    protected $primaryKey = 'idAdmin';
+
+
     public function mencatat_pengeluaran(){
         return $this->hasOne(Pengeluaran::class);
     }

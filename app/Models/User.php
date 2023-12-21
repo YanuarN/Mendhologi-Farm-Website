@@ -45,6 +45,8 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    protected $primaryKey = 'idPengguna';
+
     public function melakukan(){
         return $this->hasOne(Pesanan::class);
     }

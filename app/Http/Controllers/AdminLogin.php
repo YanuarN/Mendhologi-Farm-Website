@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
-class Login extends Controller
+class AdminLogin extends Controller
 {
+
     public function index()
-    {
-        return view('login.login_user');
+    {   
+        return view('admin');
     }
 
     public function authenticate(Request $request)
@@ -21,7 +22,7 @@ class Login extends Controller
 
         if (FacadesAuth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return redirect()->intended('/admin');
         }
 
         return back()->withErrors([
