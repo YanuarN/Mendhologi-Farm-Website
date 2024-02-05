@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('user', compact('users'));
+        return view('dasboard.user.index', compact('users'));
     }
 
     public function create()

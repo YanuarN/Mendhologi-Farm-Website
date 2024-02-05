@@ -22,7 +22,7 @@
   
                 <!-- kategori Hewan -->
                 <li class="nav-item">
-                  <a href="/admin" class="nav-link">
+                  <a href="kategori.index" class="nav-link">
                       <i class="nav-icon fas fa-list"></i>
                       <p>Kategori Hewan</p>
                   </a>
@@ -38,7 +38,7 @@
   
                 <!-- User -->
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/user" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>User</p>
                     </a>
