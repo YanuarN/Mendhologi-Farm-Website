@@ -34,19 +34,19 @@ class UserController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');
+        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
     }
 
     public function show($id)
     {
         $user = User::findOrFail($id);
-        return view('users.show', compact('user'));
+        return view('user.show', compact('user'));
     }
 
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('users.edit', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     public function update(Request $request, $id)
@@ -66,7 +66,7 @@ class UserController extends Controller
             'password' => $request->password ? bcrypt($request->password) : $user->password,
         ]);
 
-        return redirect()->route('users.index')->with('success', 'User berhasil diperbarui.');
+        return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');
     }
 
     public function destroy($id)
@@ -74,6 +74,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users.index')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('user.index')->with('success', 'User berhasil dihapus.');
     }
 }

@@ -33,7 +33,8 @@ Route::controller(Login::class)->group(function () {
 
 Route::get('/admin', [AdminLogin::class, 'index'])->middleware('auth:admin');
 
-Route::get('/user', [UserController::class, 'index'])->middleware('auth:admin');
+// Route::get('/user', [UserController::class, 'index'])->middleware('auth:admin');
+Route::resource('user', UserController::class);
 Route::resource('kategori', KategoriController::class);
 // Menyimpan kategori baru ke database
 // Route::post('/kategori', [KategoriController::class, 'store'])->name('kategoris.store');

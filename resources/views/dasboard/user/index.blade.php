@@ -12,7 +12,8 @@
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                                    <input type="text" name="table_search" class="form-control float-right"
+                                        placeholder="Search">
 
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-default">
@@ -36,21 +37,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($users as $user)
-                                        <tr>
-                                            <td>{{ $user->idPengguna }}</td>
-                                            <td>{{ $user->nama_pengguna }}</td>
-                                            <td>{{ $user->alamat }}</td>
-                                            <td>{{ $user->whatsapp }}</td>
-                                            <td>
-                                                <form action="{{ route('users.destroy', $user->id) }}" method="post">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        </tr>
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <td>{{ $user->idPengguna }}</td>
+                                                <td>{{ $user->nama_pengguna }}</td>
+                                                <td>{{ $user->alamat }}</td>
+                                                <td>{{ $user->whatsapp }}</td>
+                                                <td>
+                                                    <form action="{{ route('user.destroy', $user->idPengguna) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
