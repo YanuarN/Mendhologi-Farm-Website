@@ -10,7 +10,7 @@ class AdminLogin extends Controller
 
     public function index()
     {   
-        return view('admin');
+        return view('dasboard.index');
     }
 
     public function authenticate(Request $request)
