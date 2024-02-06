@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,26 +16,30 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        return view('dasboard.user.create');
     }
 
     public function store(Request $request)
     {
         // Validasi data input jika diperlukan
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
+            'username' => ['required'],
+            'nama_pengguna' => ['required'],
+            'alamat' => ['required'],
+            'whatsapp' => ['required'],
+            'password' => ['required'],
         ]);
 
         // Simpan data user ke database
+        $data['password'] = Hash::make(['password']);
+        $data['whatsapp'] = (int)['whatsapp'];
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
-        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
+        return redirect()->route('dasboard.user.index')->with('success', 'User berhasil ditambahkan.');
     }
 
     public function show($id)
@@ -43,23 +48,23 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
-    public function edit($id)
+    public function edit($idPengguna)
     {
-        $user = User::findOrFail($id);
-        return view('user.edit', compact('user'));
+        $user = User::findOrFail($idPengguna);
+        return view('dasboard.user.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $idPengguna)
     {
         // Validasi data input jika diperlukan
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $id,
+            'email' => 'required|email|unique:users,email,',
             'password' => 'nullable|min:8',
         ]);
 
         // Update data user ke database
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($idPengguna);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,

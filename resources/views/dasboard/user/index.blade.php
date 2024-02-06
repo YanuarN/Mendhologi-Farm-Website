@@ -1,6 +1,7 @@
 @include('dasboard.adminHead')
 @include('dasboard.sidebar')
 
+@section('content')
 <div class="content-wrapper">
     <div class="content">
         <div class="container-fluid">
@@ -11,21 +12,15 @@
                             <h3 class="card-title">Daftar User</h3>
 
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
+                                <a href="{{ route('user.create') }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-plus"></i> Add New
+                                </a>
 
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <div class="container"> {{-- Tambahkan container di sekitar tabel --}}
+                            <div class="container mx-auto">
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                         <tr>
@@ -33,7 +28,7 @@
                                             <th>Nama</th>
                                             <th>Alamat</th>
                                             <th>WhatsApp</th>
-                                            <th>Aksi</th> {{-- Tambahkan kolom Aksi --}}
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,15 +39,22 @@
                                                 <td>{{ $user->alamat }}</td>
                                                 <td>{{ $user->whatsapp }}</td>
                                                 <td>
-                                                    <form action="{{ route('user.destroy', $user->idPengguna) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger btn-sm"
-                                                            onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">Hapus</button>
-                                                    </form>
+                                                    <div class="btn-group" role="group">
+                                                        <a href="{{ route('user.edit', $user->idPengguna) }}"
+                                                            class="btn btn-primary btn-sm">
+                                                            <i class="bi bi-pencil"></i> Edit
+                                                        </a>
+                                                        <form action="{{ route('user.destroy', $user->idPengguna) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">
+                                                                <i class="bi bi-trash"></i> Hapus
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
-                                            </tr>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -67,5 +69,6 @@
         </div>
     </div>
 </div>
+@endsection
 
-@include('dasboard.js')
+

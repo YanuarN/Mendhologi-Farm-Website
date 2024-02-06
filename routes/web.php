@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminLogin;
+use App\Http\Controllers\HewanController;
 use App\Http\Controllers\Login;
 use App\Http\Controllers\Register;
 use App\Http\Controllers\Regsiter;
@@ -31,10 +32,10 @@ Route::controller(Login::class)->group(function () {
     Route::post('/logout', 'Logout');
 });
 
-Route::get('/admin', [AdminLogin::class, 'index'])->middleware('auth:admin');
-
 // Route::get('/user', [UserController::class, 'index'])->middleware('auth:admin');
-Route::resource('user', UserController::class);
+Route::resource('user', UserController::class)->middleware('auth:admin');
+Route::resource('admin', AdminLogin::class)->middleware('auth:admin');
 Route::resource('kategori', KategoriController::class);
+Route::resource('hewan', HewanController::class);
 // Menyimpan kategori baru ke database
 // Route::post('/kategori', [KategoriController::class, 'store'])->name('kategoris.store');
