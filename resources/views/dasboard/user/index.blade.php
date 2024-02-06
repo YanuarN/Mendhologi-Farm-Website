@@ -1,7 +1,7 @@
 @include('dasboard.adminHead')
 @include('dasboard.sidebar')
 
-@section('content')
+
 <div class="content-wrapper">
     <div class="content">
         <div class="container-fluid">
@@ -69,6 +69,3 @@
         </div>
     </div>
 </div>
-@endsection
-
-
