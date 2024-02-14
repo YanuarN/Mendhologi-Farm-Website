@@ -1,64 +1,64 @@
-@include('dasboard.adminHead')
+@extends('dasboard.adminHead')
 @include('dasboard.sidebar')
-@section('content')
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1>Kategori</h1>
-                    </div>
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-                            <li class="breadcrumb-item active">Kategori</li>
-                        </ol>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
-        </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Tombol Tambah Kategori -->
-                <div class="row mb-3">
-                    <div class="col-md-12">
-                        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">Tambah Kategori</a>
-                    </div>
-                </div>
+<style>
+    .btn-group .btn {
+        height: 38px; /* Ubah tinggi sesuai kebutuhan */
+    }
+</style>
 
-                <!-- Daftar Kategori -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- Tabel untuk menampilkan daftar kategori -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nama Kategori</th>
-                                    <!-- Tambah kolom-kolom lain sesuai kebutuhan -->
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($categories as $category)
-                                <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->nama_kategori }}</td>
-                                    <!-- Tambah data kategori lain sesuai kebutuhan -->
-                                    <td>
-                                        <!-- Tambah tombol aksi seperti edit, hapus, dll. -->
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+
+<div class="content-wrapper">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Daftar Kategori</h3>
+
+                            <div class="card-tools">
+                                <a href="{{ route('kategori.create') }}" class="btn btn-success btn-sm">
+                                    <i class="bi bi-plus"></i> Add New
+                                </a>
+
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nama Kategori</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($kategoris as $kategori)
+                                        <tr>
+                                            <td>{{ $kategori->idKategori }}</td>
+                                            <td>{{ $kategori->nama_kategori }}</td>
+                                            <td>
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="{{ route('kategori.edit', $kategori->idKategori) }}" class="btn btn-primary mr-2">Edit</a>
+                                                    <form action="{{ route('kategori.destroy', $kategori->idKategori) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-block" onclick="return confirm('Apakah Anda yakin ingin menghapus kategori ini?')">Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
+                    <!-- /.card -->
                 </div>
-            </div><!-- /.container-fluid -->
-        </section>
-    </div><!-- /.content-wrapper -->
-@endsection
-@include('dasboard.js')
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,5 @@
 @include('dasboard.adminHead')
 @include('dasboard.sidebar')
-
-
 <div class="content-wrapper">
     <div class="content">
         <div class="container-fluid">
@@ -41,8 +39,8 @@
                                                 <td>
                                                     <div class="btn-group" role="group">
                                                         <a href="{{ route('user.edit', $user->idPengguna) }}"
-                                                            class="btn btn-primary btn-sm">
-                                                            <i class="bi bi-pencil"></i> Edit
+                                                            class="btn btn-primary btn-sm mr-2">
+                                                             Edit
                                                         </a>
                                                         <form action="{{ route('user.destroy', $user->idPengguna) }}"
                                                             method="post">
@@ -69,3 +67,6 @@
         </div>
     </div>
 </div>
+
+
+

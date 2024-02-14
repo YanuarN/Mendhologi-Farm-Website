@@ -1,7 +1,6 @@
 @include('dasboard.adminHead')
 @include('dasboard.sidebar')
 
-
 <div class="content-wrapper">
     <div class="content">
         <div class="container-fluid">
@@ -17,6 +16,11 @@
                                 @csrf
 
                                 <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="nama_pengguna">Nama Pengguna</label>
                                     <input type="text" name="nama_pengguna" class="form-control" required>
                                 </div>
@@ -29,6 +33,11 @@
                                 <div class="form-group">
                                     <label for="whatsapp">WhatsApp</label>
                                     <input type="text" name="whatsapp" class="form-control" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" class="form-control" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Tambah User</button>

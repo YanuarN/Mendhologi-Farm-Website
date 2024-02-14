@@ -22,7 +22,7 @@
   
                 <!-- kategori Hewan -->
                 <li class="nav-item">
-                  <a href="kategori.index" class="nav-link">
+                  <a href="kategori" class="nav-link">
                       <i class="nav-icon fas fa-list"></i>
                       <p>Kategori Hewan</p>
                   </a>

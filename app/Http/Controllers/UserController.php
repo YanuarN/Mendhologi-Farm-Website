@@ -29,18 +29,22 @@ class UserController extends Controller
             'whatsapp' => ['required'],
             'password' => ['required'],
         ]);
-
+    
         // Simpan data user ke database
-        $data['password'] = Hash::make(['password']);
-        $data['whatsapp'] = (int)['whatsapp'];
+        $data['password'] = Hash::make($request->password);
+        $data['whatsapp'] = (int) $request->whatsapp;
+    
         User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'username' => $request->username,
+            'nama_pengguna' => $request->nama_pengguna,
+            'alamat' => $request->alamat,
+            'whatsapp' => $data['whatsapp'],
+            'password' => $data['password'],
         ]);
-
-        return redirect()->route('dasboard.user.index')->with('success', 'User berhasil ditambahkan.');
+    
+        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan.');
     }
+    
 
     public function show($id)
     {
@@ -58,21 +62,22 @@ class UserController extends Controller
     {
         // Validasi data input jika diperlukan
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,',
-            'password' => 'nullable|min:8',
+            'nama_pengguna' => 'required',
+            'alamat' => 'required',
+            'whatsapp' => 'required',
         ]);
-
+    
         // Update data user ke database
         $user = User::findOrFail($idPengguna);
         $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
+            'nama_pengguna' => $request->nama_pengguna,
+            'alamat' => $request->alamat,
+            'whatsapp' => $request->whatsapp,
         ]);
-
+    
         return redirect()->route('user.index')->with('success', 'User berhasil diperbarui.');
     }
+    
 
     public function destroy($id)
     {

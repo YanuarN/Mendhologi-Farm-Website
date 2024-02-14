@@ -17,4 +17,7 @@ class Kategori extends Model
         return $this->belongsToMany(Hewan::class);
     }
 
+    protected $primaryKey = 'idKategori';
+
+
 }
