@@ -14,11 +14,14 @@ class Hewan extends Model
         'jenis',
         'berat',
         'harga',
+        'idAdmin',
+        'idKategori'
     ];
 
-    
 
-    public function kategoris(){
+
+    public function kategoris()
+    {
         return $this->hasOne(Kategori::class);
     }
 }

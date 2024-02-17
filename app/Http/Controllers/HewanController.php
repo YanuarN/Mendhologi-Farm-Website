@@ -27,16 +27,22 @@ class HewanController extends Controller
     // Menyimpan hewan baru ke database
     public function store(Request $request)
     {
+
         $request->validate([
             'foto' => 'required',
             'jenis' => 'required',
             'berat' => 'required',
             'harga' => 'required',
+            'kategori' => 'required'
         ]);
 
-        $idAdmin = auth() -> user()->id;
-    
-        Hewan::create($request->all());
+        $idAdmin = auth()->user()->idAdmin;
+
+        $data = $request->all();
+        $data['idAdmin'] = $idAdmin;
+        $data['idKategori'] = $request->kategori;
+
+        Hewan::create($data);
 
         return redirect()->route('dasboard.hewan.index')->with('success', 'Hewan berhasil ditambahkan.');
     }
