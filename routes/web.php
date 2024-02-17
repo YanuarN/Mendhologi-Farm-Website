@@ -35,7 +35,7 @@ Route::controller(Login::class)->group(function () {
 // Route::get('/user', [UserController::class, 'index'])->middleware('auth:admin');
 Route::resource('user', UserController::class)->middleware('auth:admin');
 Route::resource('admin', AdminLogin::class)->middleware('auth:admin');
-Route::resource('kategori', KategoriController::class);
-Route::resource('hewan', HewanController::class);
+Route::resource('kategori', KategoriController::class)->middleware('auth:admin');
+Route::resource('hewan', HewanController::class)->middleware('auth:admin');
 // Menyimpan kategori baru ke database
 // Route::post('/kategori', [KategoriController::class, 'store'])->name('kategoris.store');

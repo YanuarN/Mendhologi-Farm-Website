@@ -26,6 +26,26 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="kategori" class="col-md-4 col-form-label text-md-right">{{ __('Kategori') }}</label>
+                        
+                            <div class="col-md-6">
+                                <select id="kategori" class="form-control @error('kategori') is-invalid @enderror" name="kategori" required>
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach($kategoris as $kategori)
+                                        <option value="{{ $kategori->idKategori }}">{{ $kategori->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                        
+                                @error('kategori')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+
+                        <div class="form-group row">
                             <label for="jenis" class="col-md-4 col-form-label text-md-right">{{ __('Jenis') }}</label>
 
                             <div class="col-md-6">
@@ -57,7 +77,9 @@
                             <label for="harga" class="col-md-4 col-form-label text-md-right">{{ __('Harga') }}</label>
 
                             <div class="col-md-6">
-                                <input id="harga" type="text" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga') }}" required autocomplete="harga">
+                                <input id="harga" type="text" class="form-control @error('harga') is-invalid @enderror" name="harga"
+                                 value="{{ old('harga') ? number_format(old('harga'), 0, ',', '.') : '' }}" required autocomplete="harga">
+
 
                                 @error('harga')
                                     <span class="invalid-feedback" role="alert">

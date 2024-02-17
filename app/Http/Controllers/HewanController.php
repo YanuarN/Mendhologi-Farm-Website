@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Hewan;
+use App\Models\Kategori;
+use App\Models\Admin;
 
 class HewanController extends Controller
 {
@@ -17,7 +19,9 @@ class HewanController extends Controller
     // Menampilkan form untuk membuat hewan baru
     public function create()
     {
-        return view('dasboard.hewan.create');
+        return view('dasboard.hewan.create', [
+            'kategoris' => Kategori::all()
+        ]);
     }
 
     // Menyimpan hewan baru ke database
@@ -30,6 +34,8 @@ class HewanController extends Controller
             'harga' => 'required',
         ]);
 
+        $idAdmin = auth() -> user()->id;
+    
         Hewan::create($request->all());
 
         return redirect()->route('dasboard.hewan.index')->with('success', 'Hewan berhasil ditambahkan.');
