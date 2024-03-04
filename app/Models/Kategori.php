@@ -13,11 +13,10 @@ class Kategori extends Model
         'nama_kategori',
     ];
 
+    protected $primaryKey = 'idKategori';
+
     public function hewans(){
         return $this->belongsToMany(Hewan::class);
     }
-
-    protected $primaryKey = 'idKategori';
-
 
 }

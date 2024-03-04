@@ -31,21 +31,26 @@
             <div class="collapse navbar-collapse" id="navbarsFurni">
                 <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ url('index.html') }}">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
-                    <li><a class="nav-link" href="{{ url('shop.html') }}">Shop</a></li>
-                    <li><a class="nav-link" href="{{ url('about.html') }}">About us</a></li>
-                    <li><a class="nav-link" href="{{ url('services.html') }}">Services</a></li>
-                    <li><a class="nav-link" href="{{ url('blog.html') }}">Blog</a></li>
-                    <li><a class="nav-link" href="{{ url('contact.html') }}">Contact us</a></li>
+                    <li><a class="nav-link" href="/shop">Shop</a></li>
+                    <li><a class="nav-link" href=about>About us</a></li>
+                    <li><a class="nav-link" href="">Contact us</a></li>
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                     <li><a class="nav-link" href="/login"><img src="{{ asset('images/user.svg') }}" alt="User"></a></li>
-                    <li><a class="nav-link" href="{{ url('cart.html') }}"><img src="{{ asset('images/cart.svg') }}"
-                                alt="Cart"></a></li>
+                    @auth
+                    <li class="nav-link">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        </form>
+                    </li>
+                    @endauth
                 </ul>
             </div>
         </div>
     </nav>
     <!-- End Header/Navigation -->
+

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('jenis');
             $table->integer('berat');
             $table->double('harga');
+            $table->boolean('isReady')->default(true);
             $table->timestamps();
         });
     }

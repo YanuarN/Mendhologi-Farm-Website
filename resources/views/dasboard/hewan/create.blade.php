@@ -12,10 +12,13 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
+                            <label for="foto"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
                             <div class="col-md-6">
-                                <input id="foto" type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" required autocomplete="foto">
+                                <input id="foto" type="file"
+                                    class="form-control @error('foto') is-invalid @enderror" name="foto" required
+                                    autocomplete="foto">
 
                                 @error('foto')
                                     <span class="invalid-feedback" role="alert">
@@ -26,16 +29,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="kategori" class="col-md-4 col-form-label text-md-right">{{ __('Kategori') }}</label>
-                        
+                            <label for="kategori"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Kategori') }}</label>
+
                             <div class="col-md-6">
-                                <select id="kategori" class="form-control @error('kategori') is-invalid @enderror" name="kategori" required>
+                                <select id="kategori" class="form-control @error('kategori') is-invalid @enderror"
+                                    name="kategori" required>
                                     <option value="">Pilih Kategori</option>
-                                    @foreach($kategoris as $kategori)
-                                        <option value="{{ $kategori->idKategori }}">{{ $kategori->nama_kategori }}</option>
+                                    @foreach ($kategoris as $kategori)
+                                        <option value="{{ $kategori->idKategori }}">{{ $kategori->nama_kategori }}
+                                        </option>
                                     @endforeach
                                 </select>
-                        
+
                                 @error('kategori')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -43,13 +49,16 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
 
                         <div class="form-group row">
-                            <label for="jenis" class="col-md-4 col-form-label text-md-right">{{ __('Jenis') }}</label>
+                            <label for="jenis"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Jenis') }}</label>
 
                             <div class="col-md-6">
-                                <input id="jenis" type="text" class="form-control @error('jenis') is-invalid @enderror" name="jenis" value="{{ old('jenis') }}" required autocomplete="jenis" autofocus>
+                                <input id="jenis" type="text"
+                                    class="form-control @error('jenis') is-invalid @enderror" name="jenis"
+                                    value="{{ old('jenis') }}" required autocomplete="jenis" autofocus>
 
                                 @error('jenis')
                                     <span class="invalid-feedback" role="alert">
@@ -60,10 +69,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="berat" class="col-md-4 col-form-label text-md-right">{{ __('Berat') }}</label>
+                            <label for="berat"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Berat') }}</label>
 
                             <div class="col-md-6">
-                                <input id="berat" type="text" class="form-control @error('berat') is-invalid @enderror" name="berat" value="{{ old('berat') }}" required autocomplete="berat">
+                                <input id="berat" type="text"
+                                    class="form-control @error('berat') is-invalid @enderror" name="berat"
+                                    value="{{ old('berat') }}" required autocomplete="berat">
 
                                 @error('berat')
                                     <span class="invalid-feedback" role="alert">
@@ -74,11 +86,14 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="harga" class="col-md-4 col-form-label text-md-right">{{ __('Harga') }}</label>
+                            <label for="harga"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Harga') }}</label>
 
                             <div class="col-md-6">
-                                <input id="harga" type="text" class="form-control @error('harga') is-invalid @enderror" name="harga"
-                                 value="{{ old('harga') ? number_format(old('harga'), 0, ',', '.') : '' }}" required autocomplete="harga">
+                                <input id="harga" type="text"
+                                    class="form-control @error('harga') is-invalid @enderror" name="harga"
+                                    value="{{ old('harga') ? number_format(old('harga'), 0, ',', '.') : '' }}" required
+                                    autocomplete="harga">
 
 
                                 @error('harga')

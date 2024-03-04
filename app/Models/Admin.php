@@ -60,4 +60,9 @@ class Admin extends Authenticatable
     {
         return $this->hasOne(Hewan::class);
     }
+
+    public function menangani()
+    {
+        return $this->hasOne(Pesanan::class);
+    }
 }

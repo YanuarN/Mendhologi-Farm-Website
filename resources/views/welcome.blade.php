@@ -1,11 +1,4 @@
 @include('header')
-@auth
-
-    <form action="/logout" method="post">
-        @csrf
-        <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
-    </form>
-@endauth
 <!-- Start Hero Section -->
 <div class="hero">
     <div class="container">

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Hewan;
 use App\Models\Kategori;
-use App\Models\Admin;
 
 class HewanController extends Controller
 {
@@ -24,44 +23,47 @@ class HewanController extends Controller
         ]);
     }
 
-    // Menyimpan hewan baru ke database
     public function store(Request $request)
     {
-
         $request->validate([
-            'foto' => 'required',
+            'foto' => 'required|image|max:2048', 
             'jenis' => 'required',
             'berat' => 'required',
             'harga' => 'required',
             'kategori' => 'required'
         ]);
-
+    
         $idAdmin = auth()->user()->idAdmin;
-
-        $data = $request->all();
-        $data['idAdmin'] = $idAdmin;
-        $data['idKategori'] = $request->kategori;
-
-        Hewan::create($data);
-
-        return redirect()->route('dasboard.hewan.index')->with('success', 'Hewan berhasil ditambahkan.');
+        $fotoPath = $request->file('foto')->store('public');
+        $fileName = basename($fotoPath);
+        Hewan::create([
+            'foto' => $fileName,
+            'jenis' => $request->jenis,
+            'berat' => $request->berat,
+            'harga' => $request->harga,
+            'idAdmin' => $idAdmin,
+            'idKategori' => $request->kategori
+        ]);
+    
+        return redirect()->route('hewan.index')->with('success', 'Hewan berhasil ditambahkan.');
     }
 
-    // Menampilkan detail hewan
-    public function show($id)
+    
+    public function show($idHewan)
     {
-        $hewan = Hewan::findOrFail($id);
+        $hewan = Hewan::findOrFail($idHewan);
         return view('hewan.show', compact('hewan'));
     }
 
-    // Menampilkan form untuk mengedit hewan
-    public function edit($id)
+   
+    public function edit($idHewan)
     {
-        $hewan = Hewan::findOrFail($id);
-        return view('dasboard.hewan.edit', compact('hewan'));
+        $hewan = Hewan::findOrFail($idHewan);
+        $kategoris = Kategori::all();
+        return view('dasboard.hewan.edit', compact('hewan', 'kategoris'));
     }
 
-    // Memperbarui hewan di database
+    
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -69,20 +71,28 @@ class HewanController extends Controller
             'jenis' => 'required',
             'berat' => 'required',
             'harga' => 'required',
+            'kategori' => 'required'
         ]);
-
+    
         $hewan = Hewan::findOrFail($id);
-        $hewan->update($request->all());
-
-        return redirect()->route('dasboard.hewan.index')->with('success', 'Hewan berhasil diperbarui.');
+        $hewan->update([
+            'foto' => $request->foto,
+            'jenis' => $request->jenis,
+            'berat' => $request->berat,
+            'harga' => $request->harga,
+            'idKategori' => $request->kategori
+        ]);
+    
+        return redirect()->route('hewan.index')->with('success', 'Hewan berhasil diperbarui.');
     }
+    
 
-    // Menghapus hewan dari database
+    
     public function destroy($id)
     {
         $hewan = Hewan::findOrFail($id);
         $hewan->delete();
 
-        return redirect()->route('dasboard.hewan.index')->with('success', 'Hewan berhasil dihapus.');
+        return redirect()->route('hewan.index')->with('success', 'Hewan berhasil dihapus.');
     }
 }

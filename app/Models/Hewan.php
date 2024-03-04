@@ -18,10 +18,15 @@ class Hewan extends Model
         'idKategori'
     ];
 
-
+    protected $primaryKey = 'idHewan';
 
     public function kategoris()
     {
         return $this->hasOne(Kategori::class);
     }
+    public function pesanans()
+    {
+        return $this->hasMany('Pesanan', 'hewan_id');
+    }
+
 }

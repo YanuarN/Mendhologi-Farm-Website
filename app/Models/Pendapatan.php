@@ -9,6 +9,15 @@ class Pendapatan extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'jenis_pendapatan',
+        'nominal',
+        'keterangan',
+        'idAdmin',
+    ];
+
+    protected $primaryKey = 'idPendapatan';
+
     public function dikelola(){
         return $this->belongsToMany(Admin::class);
     }

@@ -22,12 +22,8 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 if ($guard === 'admin') {
-                    // Guard 'admin' terdeteksi, lakukan sesuatu
-                    // Contoh: Redirect ke halaman admin
                     return redirect('/admin-dashboard');
                 } elseif ($guard === 'web') {
-                    // Guard 'web' terdeteksi, lakukan sesuatu
-                    // Contoh: Redirect ke halaman utama
                     return redirect('/');
                 }
             }

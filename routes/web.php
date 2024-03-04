@@ -4,10 +4,14 @@ use App\Http\Controllers\AdminLogin;
 use App\Http\Controllers\HewanController;
 use App\Http\Controllers\Login;
 use App\Http\Controllers\Register;
-use App\Http\Controllers\Regsiter;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PendapatanController;
+use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,10 +36,17 @@ Route::controller(Login::class)->group(function () {
     Route::post('/logout', 'Logout');
 });
 
-// Route::get('/user', [UserController::class, 'index'])->middleware('auth:admin');
-Route::resource('user', UserController::class)->middleware('auth:admin');
-Route::resource('admin', AdminLogin::class)->middleware('auth:admin');
-Route::resource('kategori', KategoriController::class)->middleware('auth:admin');
-Route::resource('hewan', HewanController::class)->middleware('auth:admin');
-// Menyimpan kategori baru ke database
-// Route::post('/kategori', [KategoriController::class, 'store'])->name('kategoris.store');
+Route::resource('shop', ShopController::class);
+Route::post('/order/create', [OrderController::class, 'store'])->name('order.store')->middleware('auth:web');
+Route::get('/order/create', [OrderController::class, 'create'])->name('order.create')->middleware('auth:web');
+
+//Route Dashboard Admin
+Route::middleware(['auth:admin'])->group(function () {
+    Route::resource('user', UserController::class);
+    Route::resource('admin', AdminLogin::class);
+    Route::resource('kategori', KategoriController::class);
+    Route::resource('hewan', HewanController::class);
+    Route::resource('pendapatan', PendapatanController::class);
+    Route::resource('pengeluaran', PengeluaranController::class);
+
+});

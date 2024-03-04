@@ -7,8 +7,10 @@
     "require": {
         "php": "^8.1",
         "almasaeed2010/adminlte": "~3.1",
+        "arielmejiadev/larapex-charts": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
         "jeroennoten/laravel-adminlte": "^3.9",
+        "khill/lavacharts": "^3.1",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8"

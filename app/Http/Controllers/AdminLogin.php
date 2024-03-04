@@ -3,14 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Pendapatan;
+use App\Models\Pengeluaran;
+use App\Charts\TotalPendapatanChart;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class AdminLogin extends Controller
 {
 
-    public function index()
-    {   
-        return view('dasboard.index');
+    public function index(TotalPendapatanChart $chart)
+    {
+        $pendapatan = Pendapatan::sum('nominal');
+        $pengeluaran = Pengeluaran::sum('nominal');
+        $saldo = $pendapatan - $pengeluaran;
+
+        $chart = $chart->build();
+
+        return view('dasboard.index', compact('pendapatan', 'pengeluaran', 'saldo', 'chart'));
     }
 
     public function authenticate(Request $request)

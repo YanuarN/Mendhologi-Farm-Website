@@ -4,7 +4,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-        <span class="brand-text font-weight-light">Admin Mendhologi Farm</span>
+        <span class="brand-text font-weight-light">Mendologi Farm</span>
     </a>
   
     <!-- Sidebar -->
@@ -22,7 +22,7 @@
   
                 <!-- kategori Hewan -->
                 <li class="nav-item">
-                  <a href="kategori" class="nav-link">
+                  <a href="/kategori" class="nav-link">
                       <i class="nav-icon fas fa-list"></i>
                       <p>Kategori Hewan</p>
                   </a>
@@ -30,7 +30,7 @@
   
                 <!-- Hewan -->
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/hewan" class="nav-link">
                         <i class="nav-icon fas fa-paw"></i>
                         <p>Hewan</p>
                     </a>
@@ -45,7 +45,7 @@
                 </li>
   
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="/pesanan" class="nav-link">
                       <i class="nav-icon fas fa-shopping-cart"></i>
                       <p>Pesanan</p>
                   </a>
@@ -53,7 +53,7 @@
   
                 <!-- Pendapatan -->
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/pendapatan" class="nav-link">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>Pendapatan</p>
                     </a>
@@ -61,7 +61,7 @@
   
                 <!-- Pengeluaran -->
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/pengeluaran" class="nav-link">
                         <i class="nav-icon fas fa-money-bill-alt"></i>
                         <p>Pengeluaran</p>
                     </a>
