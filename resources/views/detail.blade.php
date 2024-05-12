@@ -46,7 +46,7 @@
 <body>
     <div class="container">
         <div class="hewan-details">
-            <img src="{{ asset('storage/' . $hewan->foto) }}" alt="{{ $hewan->jenis }}">
+            <img src="{{ asset('storage/public/' . $hewan->foto) }}" alt="{{ $hewan->jenis }}">
             <h2>{{ $hewan->jenis }}</h2>
             <p>Berat: {{ $hewan->berat }} Kg</p>
             <p>Harga: Rp {{ number_format($hewan->harga, 0, ',', '.') }}</p>

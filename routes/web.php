@@ -11,6 +11,8 @@ use App\Http\Controllers\PendapatanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PesananController;
+use Khill\Lavacharts\DataTables\Rows\Row;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,5 +50,6 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('hewan', HewanController::class);
     Route::resource('pendapatan', PendapatanController::class);
     Route::resource('pengeluaran', PengeluaranController::class);
+    Route::resource('pesanan', PesananController::class);
 
 });

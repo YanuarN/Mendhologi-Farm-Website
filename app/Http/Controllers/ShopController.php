@@ -11,22 +11,30 @@ class ShopController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $hewans = Hewan::all();
+        $sortBy = $request->sort_by;
+        $query = Hewan::query();
+
+        switch ($sortBy) {
+            case 'Kambing': // Sort by kambing (ID kategori 1)
+                $query->orderBy('idKategori')->where('idKategori', 1);
+                break;
+            case 'Sapi': // Sort by sapi (ID kategori 6)
+                $query->orderBy('idKategori')->where('idKategori', 6);
+                break;
+            case 'Domba': // Sort by domba (ID kategori 7)
+                $query->orderBy('idKategori')->where('idKategori', 7);
+                break;
+            default:
+                $query->orderBy('idKategori');
+        }
+        $hewans = $query->get();
         $kategoris = Kategori::all();
+
         return view('shop', compact('hewans', 'kategoris'));
     }
-
-    public function showByCategory(Request $request, $idKategori)
-    {
-        $kategori = Kategori::findOrFail($idKategori);
-        $hewans = Hewan::where('kategori_id', $idKategori)->get();
-        $kategoris = Kategori::all(); // Ini mungkin tidak diperlukan jika Anda hanya ingin menampilkan kategori terkait
-        return view('shop', compact('hewans', 'kategoris', 'kategori')); // Mengganti 'category' menjadi 'kategori'
-    }
     
-
     public function show($idHewan)
     {
         $hewan = Hewan::findOrFail($idHewan);

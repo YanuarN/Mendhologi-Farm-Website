@@ -92,7 +92,6 @@
                             <div class="col-md-6">
                                 <input id="harga" type="text"
                                     class="form-control @error('harga') is-invalid @enderror" name="harga"
-                                    value="{{ old('harga') ? number_format(old('harga'), 0, ',', '.') : '' }}" required
                                     autocomplete="harga">
 
 

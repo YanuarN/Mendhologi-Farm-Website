@@ -35,7 +35,7 @@
                                         <td>{{ $hewan->idHewan }}</td>
                                         <td>
                                             @if($hewan->foto)
-                                            <img src="{{ asset('storage/' . $hewan->foto) }}" alt="Foto Hewan" style="width: 100px;">
+                                            <img src="{{ asset('storage/public/' . $hewan->foto) }}" alt="Foto Hewan" style="width: 100px;">
                                             @else
                                             No Image
                                             @endif

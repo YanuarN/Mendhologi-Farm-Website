@@ -11,15 +11,12 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
-        // Tampilkan form untuk membuat pesanan baru
         $hewans = Hewan::findOrFail($request->query('idHewan'));
         return view('order', compact('hewans'));
     }
 
     public function store(Request $request)
     {
-
-        // Validasi input dari request
         $request->validate([
             'alamat_kirim' => 'required',
             'no_whatsapp' => 'required',
@@ -29,7 +26,6 @@ class OrderController extends Controller
         $idPengguna = auth()->user()->idPengguna;
         $idHewan = $request->idHewan;
 
-        // Buat pesanan baru dengan idHewan yang tercatat
         Pesanan::create([
             'alamat_kirim' => $request->alamat_kirim,
             'no_whatsapp' => $request->no_whatsapp,
@@ -38,7 +34,12 @@ class OrderController extends Controller
             'idPengguna' => $idPengguna,
         ]);
 
-        // Redirect pengguna ke halaman yang sesuai
-        return redirect()->route('shop')->with('success', 'Pesanan berhasil dibuat');
+        $jumlahHewanDiupdate = Hewan::where('idHewan', $idHewan)->where('isReady', true)->decrement('isReady');
+
+        if ($jumlahHewanDiupdate > 0) {
+            return redirect()->route('shop.index')->with('success', 'Pesanan berhasil dibuat dan status isReady telah diperbarui.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal membuat pesanan. Barang tidak tersedia atau status isReady sudah tidak aktif.');
+        }
     }
 }

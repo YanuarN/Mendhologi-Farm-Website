@@ -20,12 +20,18 @@ class Pesanan extends Model
     protected $primaryKey = 'idPesanan';
 
 
-    public function dikelola(){
+    public function dikelola()
+    {
         return $this->belongsToMany(User::class);
     }
     
     public function hewan()
     {
-        return $this->belongsTo('Hewan', 'hewan_id');
+        return $this->belongsTo(Hewan::class, 'idHewan');
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idPengguna');
     }
 }

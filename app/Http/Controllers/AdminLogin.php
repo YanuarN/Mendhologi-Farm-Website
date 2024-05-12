@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Pendapatan;
 use App\Models\Pengeluaran;
 use App\Charts\TotalPendapatanChart;
+use App\Models\Pesanan;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class AdminLogin extends Controller
@@ -15,11 +17,13 @@ class AdminLogin extends Controller
     {
         $pendapatan = Pendapatan::sum('nominal');
         $pengeluaran = Pengeluaran::sum('nominal');
+        $totalPesanan = Pesanan::count();
+        $totalUser = User::count();
         $saldo = $pendapatan - $pengeluaran;
 
         $chart = $chart->build();
 
-        return view('dasboard.index', compact('pendapatan', 'pengeluaran', 'saldo', 'chart'));
+        return view('dasboard.index', compact('pendapatan', 'pengeluaran', 'saldo', 'chart', 'totalPesanan', 'totalUser'));
     }
 
     public function authenticate(Request $request)
@@ -38,4 +42,5 @@ class AdminLogin extends Controller
             'username' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
         ])->onlyInput('username');
     }
+  
 }

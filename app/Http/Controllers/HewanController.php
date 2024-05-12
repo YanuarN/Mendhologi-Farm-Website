@@ -28,8 +28,8 @@ class HewanController extends Controller
         $request->validate([
             'foto' => 'required|image|max:2048', 
             'jenis' => 'required',
-            'berat' => 'required',
-            'harga' => 'required',
+            'berat' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
             'kategori' => 'required'
         ]);
     
@@ -67,16 +67,17 @@ class HewanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'foto' => 'required',
+            'foto' => 'required|image|max:2048',
             'jenis' => 'required',
-            'berat' => 'required',
-            'harga' => 'required',
+            'berat' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
             'kategori' => 'required'
         ]);
-    
+        $fotoPath = $request->file('foto')->store('public');
+        $fileName = basename($fotoPath);
         $hewan = Hewan::findOrFail($id);
         $hewan->update([
-            'foto' => $request->foto,
+            'foto' => $fileName,
             'jenis' => $request->jenis,
             'berat' => $request->berat,
             'harga' => $request->harga,

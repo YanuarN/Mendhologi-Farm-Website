@@ -11,7 +11,7 @@ body{
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: #198754;
+  background: #3b5d50;
 }
 .container{
   max-width: 700px;
@@ -101,7 +101,7 @@ form .input-box span.details{
  }
  form .button input:hover{
   /* transform: scale(0.99); */
-  background: linear-gradient(-135deg, #71b7e6, #9b59b6);
+  background: #5F9581;
   }
  @media(max-width: 584px){
  .container{
@@ -121,6 +121,11 @@ form .user-details .input-box{
   .user-details::-webkit-scrollbar{
     width: 5px;
   }
+  .password-instruction {
+    font-size: 6px; /* Atur ukuran font sesuai kebutuhan */
+    color: #888; /* Atur warna teks sesuai kebutuhan */
+    margin-top: 0px; /* Atur jarak dari form password */
+}
   }
   @media(max-width: 459px){
   .container .content .category{

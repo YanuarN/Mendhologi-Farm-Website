@@ -3,20 +3,28 @@
 		<!-- Start Hero Section -->
         <div class="hero">
             <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-lg-5">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-7">
                         <div class="intro-excerpt">
                             <h1>Shop</h1>
+                            <p>Temukan hewan qurban dengan kualitas terbaik di peternakan kami!</p>
                         </div>
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col-lg-5">
                         <!-- Daftar Kategori -->
-                        <ul class="list-inline">
-                            @foreach($kategoris as $kategori)
-                            <li class="list-inline-item"><a href="#" onclick="sortProducts('{{ $kategori->idKategori }}')">{{ $kategori->nama_kategori }}</a></li>
-                            @endforeach
-                        </ul>
-                    </div>
+                        <form action="{{ route('shop.index') }}" method="GET">
+                            <div class="mb-3">
+                                <label for="sort_by" class="form-label">Kategori Hewan:</label>
+                                <select class="form-select" name="sort_by" id="sort_by">>
+                                    <option value="defult">Default</option>
+                                    <option value="Domba">Domba</option>
+                                    <option value="Kambing">Kambing</option>
+                                    <option value="Sapi">Sapi</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </form>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -27,9 +35,10 @@
         <div class="container">
             <div class="row">
                 @foreach($hewans as $hewan)
+                @if($hewan->isReady)
                 <div class="col-12 col-md-4 col-lg-3 mb-5">
                     <a class="product-item" href="{{ route('shop.show', $hewan->idHewan) }}">
-                        <img src="{{ asset('storage/' . $hewan->foto) }}" alt="Nama Gambar">
+                        <img src="{{ asset('storage/public/' . $hewan->foto) }}" alt="Nama Gambar">
                         <h3 class="product-title">{{ $hewan->jenis }}</h3>
                         <p class="product-title">{{  $hewan->berat  }}Kg</p>
                         <strong class="product-price">Rp {{ number_format($hewan->harga, 0, ',', '.') }}</strong>
@@ -38,10 +47,9 @@
                         </span>
                     </a>
                 </div>
+                @endif
                 @endforeach
             </div>
         </div>
     </div>
-    
-
 @include('footer')

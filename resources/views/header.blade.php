@@ -34,8 +34,8 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li><a class="nav-link" href="/shop">Shop</a></li>
-                    <li><a class="nav-link" href=about>About us</a></li>
-                    <li><a class="nav-link" href="">Contact us</a></li>
+                    <li><a class="nav-link" href=#about-us>About us</a></li>
+                    <li><a class="nav-link" href="#layanan">Layanan</a></li>
                 </ul>
 
                 <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
