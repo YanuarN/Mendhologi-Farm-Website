@@ -49,6 +49,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::resource('kategori', KategoriController::class);
     Route::resource('hewan', HewanController::class);
     Route::resource('pendapatan', PendapatanController::class);
+    Route::get('pendapatan/export-pdf', [PendapatanController::class, 'exportPdf'])->name('pendapatan.exportPdf');
     Route::resource('pengeluaran', PengeluaranController::class);
     Route::resource('pesanan', PesananController::class);
 

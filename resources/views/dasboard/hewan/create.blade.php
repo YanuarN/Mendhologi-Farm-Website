@@ -67,16 +67,19 @@
                                 @enderror
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="berat"
-                                class="col-md-4 col-form-label text-md-right">{{ __('Berat') }}</label>
-
+                            <label for="berat" class="col-md-4 col-form-label text-md-right">{{ __('Berat') }}</label>
+                        
                             <div class="col-md-6">
-                                <input id="berat" type="text"
-                                    class="form-control @error('berat') is-invalid @enderror" name="berat"
-                                    value="{{ old('berat') }}" required autocomplete="berat">
-
+                                <div class="input-group">
+                                    <input id="berat" type="text"
+                                           class="form-control @error('berat') is-invalid @enderror"
+                                           name="berat" value="{{ old('berat') }}" required autocomplete="berat">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Kg</span>
+                                    </div>
+                                </div>
+                        
                                 @error('berat')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -84,6 +87,7 @@
                                 @enderror
                             </div>
                         </div>
+                        
 
                         <div class="form-group row">
                             <label for="harga"

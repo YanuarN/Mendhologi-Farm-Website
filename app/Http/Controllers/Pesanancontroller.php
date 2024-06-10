@@ -38,10 +38,12 @@ class PesananController extends Controller
     
         // Mengambil idAdmin dari pengguna yang sedang terautentikasi
         $idAdmin = Auth::id();
-    
+        
+        $kategoriHewan = $this->getKategoriHewanFromId($hewan->idKategori);
+
         // Menyimpan data pendapatan
         $pendapatan = new Pendapatan();
-        $pendapatan->jenis_pendapatan = 'hewan terjual';
+        $pendapatan->jenis_pendapatan = 'Penjualan ' . $kategoriHewan;
         $pendapatan->nominal = $hewan->harga;
         $pendapatan->keterangan = 'Penjualan hewan';
         $pendapatan->idAdmin = $idAdmin;
@@ -55,5 +57,18 @@ class PesananController extends Controller
         
         return redirect()->route('pesanan.index')->with('success', 'Pesanan berhasil dihapus');
     }
-    
+
+    private function getKategoriHewanFromId($idKategori)
+    {
+        switch ($idKategori) {
+            case 1:
+                return 'Kambing';
+            case 6:
+                return 'Sapi';
+            case 7:
+                return 'Domba';
+            default:
+                return 'Hewan Lainnya';
+        }
+    }
 }
